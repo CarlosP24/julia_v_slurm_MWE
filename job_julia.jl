@@ -13,9 +13,10 @@ pop!(nodes)
 nodes = string.(nodes)
 my_procs = map(x -> (x, :auto), nodes)
 
-addprocs(my_procs; exeflags="--project", enable_threaded_blas = false)
+addprocs(my_procs; exeflags="--project",)
 
 @everywhere begin
+    using LinearAlgebra
     include("functions.jl")
 end
 
