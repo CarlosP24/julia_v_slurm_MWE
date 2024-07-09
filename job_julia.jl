@@ -15,6 +15,10 @@ my_procs = map(x -> (x, :auto), nodes)
 
 addprocs(my_procs; exeflags="--project", enable_threaded_blas = false)
 
+@everywhere begin
+    include("functions.jl")
+end
+
 A = work_load() 
 
 rmprocs(workers()...)
